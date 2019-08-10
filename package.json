@@ -1,0 +1,38 @@
+{
+  "name": "HNIntroApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "run:ios": "react-native run-ios --simulator='iPhone Xs Max' --configuration Debug",
+    "run:iphone_6_plus": "react-native run-ios --simulator='iPhone 6s Plus' --configuration Release",
+    "run:ios:release": "react-native run-ios --simulator='iPhone Xs Max' --configuration Release",
+    "run:ios:x": "react-native run-ios --device --udid b7f54fff5140ad8a06d1f320c4f3d5ded409931f --configuration Release",
+    "run:android": "react-native run-android",
+    "run:android:release": "react-native run-android --variant=release",
+    "bundle": "yarn bundle:ios && yarn bundle:android",
+    "bundle:ios": "node ./node_modules/react-native/local-cli/cli.js bundle --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --dev=false --verbose",
+    "bundle:android": "node ./node_modules/react-native/local-cli/cli.js bundle --platform android --entry-file index.js --bundle-output android/main.jsbundle --dev=false --assets-dest android/app/src/main/res/ --verbose",
+    "test:watch": "jest --watch",
+    "lint": "eslint src",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-native": "0.60.4",
+    "react-native-gesture-handler": "^1.3.0",
+    "react-navigation": "^3.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/runtime": "^7.5.0",
+    "@react-native-community/eslint-config": "^0.0.3",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

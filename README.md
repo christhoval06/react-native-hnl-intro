@@ -20,22 +20,22 @@
 - [ ] MST
 
 
-# [x] Configurando  el entrono de trabajo
-1. Generando una aplicación
-2. Ejecutando tu app en un dispositivo
-3. Conectando tu app con el depurador
-4. Resolviendo errores y avisos
-5. Árbol de directorios
+# Configurando  el entrono de trabajo
+1. Generando una aplicación [x] 
+2. Ejecutando tu app en un dispositivo [x] 
+3. Conectando tu app con el depurador [x] 
+4. Resolviendo errores y avisos [x] 
+5. Árbol de directorios [x] 
 
-# [x] Creando mi primer componente
-1. Ciclo de vida de un componente
-2. Diferencias entre Component y PureComponent 
-3. Aplicando estilos
+# Creando mi primer componente
+1. Ciclo de vida de un componente [x] 
+2. Diferencias entre Component y PureComponent [x] 
+3. Aplicando estilos [x] 
 
-# [x] Agregando navegación
-1. Conociendo react-navigation
-2. Stack de rutas
-3. Lanzando un ruta
+# Agregando navegación
+1. Conociendo react-navigation [x] 
+2. Stack de rutas [x] 
+3. Lanzando un ruta [x] 
 
 # Formularios
 1. Usando el componente TextInput

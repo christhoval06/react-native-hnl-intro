@@ -2,8 +2,10 @@
  * @flow
  */
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Card } from '../../components';
+import { StyleSheet, View, TextInput } from 'react-native';
+import { Button, Card, Input } from '../../components';
+import { Person } from '../../assets';
+
 
 type State = {
   loading: boolean;
@@ -12,7 +14,7 @@ type State = {
 };
 
 type FormsComponentProps = {
-  onSubmmit: () => void;
+  onSubmmit: (string, string) => void;
 };
 
 export default class FormsComponent extends React.Component<FormsComponentProps, State> {
@@ -23,9 +25,24 @@ export default class FormsComponent extends React.Component<FormsComponentProps,
     id: null,
   };
 
+  onChangeTextHandler = name => text => {
+    this.setState({ [name]: text });
+  };
+
+  onSubmmit = () => {
+    const { onSubmmit } = this.props;
+    const { name, id } = this.state;
+    console.log(((name || '').length < 3 && (id || '').length < 6));
+    if ((name || '').length < 3 && (id || '').length < 6) {
+      return false;
+    }
+
+
+    onSubmmit && onSubmmit(name, id);
+  }
+
 
   render(): React$Node {
-    const { onSubmmit } = this.props;
     const { name, id } = this.state;
 
     return (
@@ -34,10 +51,22 @@ export default class FormsComponent extends React.Component<FormsComponentProps,
           <View style={styles.forms__card_wrapper}>
             <Card />
           </View>
-          <View style={styles.forms__info_wrapper}></View>
+          <View style={styles.forms__info_wrapper}>
+
+            <Input style={styles.forms__info_field}
+              icon={Person}
+              iconColor='blue'
+              value={id}
+              onChangeText={this.onChangeTextHandler('id')} />
+            <Input style={styles.forms__info_field}
+              icon={Person}
+              iconColor='purple'
+              value={name}
+              onChangeText={this.onChangeTextHandler('name')} />
+          </View>
         </View>
         <View style={styles.forms__footer}>
-          <Button onPress={onSubmmit}>Save</Button>
+          <Button onPress={this.onSubmmit}>Save</Button>
         </View>
       </React.Fragment>
     )
@@ -61,8 +90,11 @@ const styles = StyleSheet.create({
   forms__info_wrapper: {
     flex: 1,
     paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: 'green',
+    paddingHorizontal: 20
+  },
+
+  forms__info_field: {
+    marginTop: 5,
   },
 
   forms__footer: {
@@ -71,4 +103,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
 });

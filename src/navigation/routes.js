@@ -9,6 +9,7 @@ import {
 import Constants from './constants';
 
 import HomeContainer from '../containers/home/home.container';
+import FormsContainer from '../containers/forms/forms.container';
 
 
 const Screens: NavigationRouteConfigMap = {
@@ -23,13 +24,19 @@ const Screens: NavigationRouteConfigMap = {
     navigationOptions: {
       title: 'Other Route',
     }
+  },
+  [Constants.ROUTE_FORMS]: {
+    screen: FormsContainer,
+    navigationOptions: {
+      title: 'ID Information',
+    }
   }
 };
 
 const AppNavigator: NavigationContainer = createStackNavigator({
   ...Screens,
 }, {
-    initialRouteName: Constants.ROUTE_HOME,
+    initialRouteName: Constants.ROUTE_FORMS,
     headerMode: 'screen',
     defaultNavigationOptions: {
       // header: null,

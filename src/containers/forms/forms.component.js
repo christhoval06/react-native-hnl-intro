@@ -3,18 +3,26 @@
  */
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
+
+import Libs from '../../libs';
+
 import { Button, Card, Input } from '../../components';
 import { Person } from '../../assets';
 
+type Pokemon = {
+  id: number;
+  name: string;
+  image: string;
+};
 
 type State = {
   loading: boolean;
   name: string;
-  id: string;
+  info: Pokemon;
 };
 
 type FormsComponentProps = {
-  onSubmmit: (string, string) => void;
+  onSubmmit: (string) => void;
 };
 
 export default class FormsComponent extends React.Component<FormsComponentProps, State> {
@@ -22,7 +30,7 @@ export default class FormsComponent extends React.Component<FormsComponentProps,
   state = {
     loading: false,
     name: null,
-    id: null,
+    info: null,
   };
 
   onChangeTextHandler = name => text => {
@@ -31,36 +39,44 @@ export default class FormsComponent extends React.Component<FormsComponentProps,
 
   onSubmmit = () => {
     const { onSubmmit } = this.props;
-    const { name, id } = this.state;
-    console.log(((name || '').length < 3 && (id || '').length < 6));
-    if ((name || '').length < 3 && (id || '').length < 6) {
+    const { name } = this.state;
+    if ((name || '').length < 3) {
       return false;
     }
 
+    this.setState({ loading: true });
 
-    onSubmmit && onSubmmit(name, id);
+    Libs.pokemon(name)
+      .then((res) => {
+        this.setState({
+          info: {
+            name: res['name'],
+            id: res['id'],
+            image: res['sprites']['front_default'],
+          },
+          loading: false
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({ loading: false });
+      });
   }
 
 
   render(): React$Node {
-    const { name, id } = this.state;
-
+    const { name, loading, info } = this.state;
     return (
       <React.Fragment>
         <View style={styles.forms__container}>
           <View style={styles.forms__card_wrapper}>
-            <Card />
+            <Card {...info} />
           </View>
           <View style={styles.forms__info_wrapper}>
 
             <Input style={styles.forms__info_field}
               icon={Person}
               iconColor='blue'
-              value={id}
-              onChangeText={this.onChangeTextHandler('id')} />
-            <Input style={styles.forms__info_field}
-              icon={Person}
-              iconColor='purple'
               value={name}
               onChangeText={this.onChangeTextHandler('name')} />
           </View>

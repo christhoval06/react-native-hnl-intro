@@ -29,7 +29,7 @@
 
 # Creando mi primer componente
 1. Ciclo de vida de un componente
-2. Diferencias entre Component y PureComponent 
+2. Diferencias entre Component y PureComponent
 3. Aplicando estilos
 
 # Agregando navegación

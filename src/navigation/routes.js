@@ -10,6 +10,8 @@ import Constants from './constants';
 
 import HomeContainer from '../containers/home/home.container';
 import FormsContainer from '../containers/forms/forms.container';
+import ShoppingCarContainer from '../containers/shoppingCar/shoppingCar.container';
+
 
 
 const Screens: NavigationRouteConfigMap = {
@@ -30,16 +32,22 @@ const Screens: NavigationRouteConfigMap = {
     navigationOptions: {
       title: 'ID Information',
     }
+  },
+  [Constants.ROUTE_SHOPPING_CAR]: {
+    screen: ShoppingCarContainer,
+    navigationOptions: {
+      title: 'My Shopping Car',
+    }
   }
 };
 
 const AppNavigator: NavigationContainer = createStackNavigator({
   ...Screens,
 }, {
-    initialRouteName: Constants.ROUTE_FORMS,
+    initialRouteName: Constants.ROUTE_SHOPPING_CAR,
     headerMode: 'screen',
     defaultNavigationOptions: {
-      // header: null,
+      header: null,
     },
   });
 
